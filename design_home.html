@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MORPH · 设计工作室 | 品牌 × 视觉 × 交互</title>
+<style>
+  :root{
+    --bg:#0b0d12;
+    --bg2:#11141c;
+    --card:#161a24;
+    --line:#232838;
+    --text:#eef1f8;
+    --muted:#9aa3b5;
+    --accent:#6c5ce7;
+    --accent2:#00d2ff;
+    --pink:#ff6584;
+    --grad:linear-gradient(135deg,#6c5ce7,#00d2ff);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif;line-height:1.7;overflow-x:hidden;}
+  a{text-decoration:none;color:inherit;}
+  ::selection{background:var(--accent);color:#fff;}
+
+  /* ===== 导航 ===== */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 6vw;background:rgba(11,13,18,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+  .logo{font-size:22px;font-weight:800;letter-spacing:1px;}
+  .logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .menu{display:flex;gap:34px;font-size:15px;color:var(--muted);}
+  .menu a:hover{color:#fff;}
+  .nav-cta{background:var(--grad);padding:9px 22px;border-radius:99px;font-size:14px;font-weight:600;color:#fff;}
+
+  /* ===== Hero ===== */
+  header{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 6vw 80px;overflow:hidden;}
+  .blob{position:absolute;border-radius:50%;filter:blur(120px);opacity:.35;pointer-events:none;}
+  .b1{width:520px;height:520px;background:#6c5ce7;top:-120px;right:-80px;animation:float 9s ease-in-out infinite;}
+  .b2{width:420px;height:420px;background:#00d2ff;bottom:-140px;left:-100px;animation:float 11s ease-in-out infinite reverse;}
+  .b3{width:300px;height:300px;background:#ff6584;top:40%;left:55%;animation:float 13s ease-in-out infinite;}
+  @keyframes float{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,-30px) scale(1.08);}}
+  .hero{position:relative;z-index:2;max-width:900px;}
+  .tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:rgba(255,255,255,.04);padding:7px 18px;border-radius:99px;font-size:13px;color:var(--muted);}
+  .tag i{width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 10px var(--accent2);}
+  h1{font-size:clamp(40px,7vw,76px);font-weight:800;line-height:1.15;margin:26px 0 20px;letter-spacing:-1px;}
+  h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .sub{font-size:clamp(15px,2vw,19px);color:var(--muted);max-width:640px;margin-bottom:38px;}
+  .hero-btns{display:flex;gap:18px;flex-wrap:wrap;}
+  .btn{display:inline-block;padding:14px 36px;border-radius:99px;font-size:15px;font-weight:600;transition:.3s;}
+  .btn-solid{background:var(--grad);color:#fff;box-shadow:0 10px 40px rgba(108,92,231,.35);}
+  .btn-solid:hover{transform:translateY(-3px);box-shadow:0 16px 50px rgba(0,210,255,.4);}
+  .btn-ghost{border:1px solid var(--line);color:var(--text);}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent2);}
+  .stats{display:flex;gap:clamp(24px,5vw,70px);margin-top:70px;flex-wrap:wrap;}
+  .stats div b{font-size:clamp(28px,4vw,42px);background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .stats div span{display:block;color:var(--muted);font-size:14px;margin-top:4px;}
+
+  /* ===== 通用区块 ===== */
+  section{padding:100px 6vw;}
+  .sec-head{max-width:720px;margin-bottom:60px;}
+  .sec-head .kicker{color:var(--accent2);font-size:14px;letter-spacing:4px;text-transform:uppercase;font-weight:600;}
+  .sec-head h2{font-size:clamp(28px,4vw,46px);font-weight:800;margin:14px 0 14px;}
+  .sec-head p{color:var(--muted);font-size:16px;}
+
+  /* ===== 服务 ===== */
+  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;}
+  .s-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 28px;transition:.35s;position:relative;overflow:hidden;}
+  .s-card::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:var(--grad);transform:scaleX(0);transition:.4s;transform-origin:left;}
+  .s-card:hover{transform:translateY(-6px);border-color:var(--accent);}
+  .s-card:hover::after{transform:scaleX(1);}
+  .s-card .ico{width:56px;height:56px;border-radius:14px;background:rgba(108,92,231,.14);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px;}
+  .s-card h3{font-size:19px;margin-bottom:10px;}
+  .s-card p{color:var(--muted);font-size:14.5px;}
+  .s-card .more{display:inline-block;margin-top:16px;font-size:13.5px;color:var(--accent2);}
+
+  /* ===== 作品 ===== */
+  .works{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;}
+  .w-card{border-radius:20px;overflow:hidden;border:1px solid var(--line);background:var(--card);transition:.35s;}
+  .w-card:hover{transform:translateY(-6px);border-color:var(--accent);}
+  .w-thumb{height:220px;display:flex;align-items:center;justify-content:center;font-size:60px;position:relative;}
+  .w-thumb::before{content:"";position:absolute;inset:0;opacity:.5;}
+  .w-1{background:linear-gradient(135deg,#6c5ce7,#a29bfe);}
+  .w-2{background:linear-gradient(135deg,#00d2ff,#0652dd);}
+  .w-3{background:linear-gradient(135deg,#ff6584,#ffb86c);}
+  .w-4{background:linear-gradient(135deg,#00b894,#55efc4);}
+  .w-5{background:linear-gradient(135deg,#fdcb6e,#e17055);}
+  .w-6{background:linear-gradient(135deg,#6c5ce7,#e84393);}
+  .w-info{padding:22px;}
+  .w-info .cat{font-size:12.5px;color:var(--accent2);letter-spacing:1px;}
+  .w-info h3{font-size:17px;margin:6px 0 6px;}
+  .w-info p{color:var(--muted);font-size:13.5px;}
+
+  /* ===== 流程 ===== */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;counter-reset:step;}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 24px;position:relative;}
+  .step::before{counter-increment:step;content:"0" counter(step);font-size:40px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:12px;}
+  .step h4{font-size:17px;margin-bottom:8px;}
+  .step p{color:var(--muted);font-size:14px;}
+
+  /* ===== 评价 ===== */
+  .testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;}
+  .t-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px;}
+  .t-card .stars{color:#ffd93d;letter-spacing:3px;margin-bottom:14px;}
+  .t-card p{color:var(--muted);font-size:15px;margin-bottom:22px;}
+  .t-card .who{display:flex;align-items:center;gap:14px;}
+  .avatar{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;}
+  .t-card .who b{display:block;font-size:15px;}
+  .t-card .who span{font-size:13px;color:var(--muted);}
+
+  /* ===== CTA ===== */
+  .cta{margin:0 6vw 100px;border-radius:28px;padding:80px 8vw;text-align:center;background:linear-gradient(135deg,rgba(108,92,231,.25),rgba(0,210,255,.18));border:1px solid var(--line);position:relative;overflow:hidden;}
+  .cta h2{font-size:clamp(26px,4.5vw,44px);font-weight:800;margin-bottom:16px;}
+  .cta p{color:var(--muted);max-width:520px;margin:0 auto 34px;}
+
+  /* ===== 页脚 ===== */
+  footer{border-top:1px solid var(--line);padding:46px 6vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:14px;}
+  .flinks{display:flex;gap:26px;}
+  .flinks a:hover{color:#fff;}
+
+  @media(max-width:640px){
+    .menu{display:none;}
+    header{padding-top:100px;}
+    section{padding:70px 6vw;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 导航 -->
+<nav>
+  <div class="logo">MORPH<span>.</span></div>
+  <div class="menu">
+    <a href="#services">服务</a>
+    <a href="#works">作品</a>
+    <a href="#process">流程</a>
+    <a href="#reviews">口碑</a>
+    <a href="#contact">联系</a>
+  </div>
+  <a class="nav-cta" href="#contact">预约咨询</a>
+</nav>
+
+<!-- Hero -->
+<header>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="hero">
+    <span class="tag"><i></i> 专注于品牌视觉与数字体验设计</span>
+    <h1>让好设计<br><span class="grad">被看见，被记住</span></h1>
+    <p class="sub">MORPH 设计工作室，致力于为品牌打造有冲击力的视觉语言——从 Logo、VI 到网站与运营设计，用审美驱动商业增长。</p>
+    <div class="hero-btns">
+      <a class="btn btn-solid" href="#contact">免费聊聊你的项目 →</a>
+      <a class="btn btn-ghost" href="#works">查看作品集</a>
+    </div>
+    <div class="stats">
+      <div><b>300+</b><span>落地项目</span></div>
+      <div><b>120+</b><span>长期客户</span></div>
+      <div><b>8年</b><span>行业深耕</span></div>
+      <div><b>98%</b><span>客户满意</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- 服务 -->
+<section id="services">
+  <div class="sec-head">
+    <div class="kicker">What we do</div>
+    <h2>一站式设计服务</h2>
+    <p>从 0 到 1 帮你把品牌想法变成高质感的视觉资产，每个环节都有专业设计师把关。</p>
+  </div>
+  <div class="services">
+    <div class="s-card"><div class="ico">🎨</div><h3>品牌视觉设计</h3><p>Logo / VI 体系 / 品牌全案，让品牌从第一天起就拥有专业形象与记忆点。</p><span class="more">了解详情 →</span></div>
+    <div class="s-card"><div class="ico">🖥️</div><h3>网页 / 小程序 UI</h3><p>高质感官网、商城、小程序界面设计，转化导向 + 审美在线，双管齐下。</p><span class="more">了解详情 →</span></div>
+    <div class="s-card"><div class="ico">📱</div><h3>App 界面设计</h3><p>从交互流程图到高保真视觉，打磨每个细节，让用户爱不释手。</p><span class="more">了解详情 →</span></div>
+    <div class="s-card"><div class="ico">📸</div><h3>海报 & 运营设计</h3><p>活动主视觉 / 电商详情页 / 社媒海报，热点跟得上，调性稳得住。</p><span class="more">了解详情 →</span></div>
+    <div class="s-card"><div class="ico">✍️</div><h3>插画 & 3D 视觉</h3><p>品牌插画、IP 形象、3D 主视觉，让画面拥有独特的故事感。</p><span class="more">了解详情 →</span></div>
+    <div class="s-card"><div class="ico">🚀</div><h3>前端实现</h3><p>设计不止于图——附赠高质量前端还原，像素级落地，不烂尾。</p><span class="more">了解详情 →</span></div>
+  </div>
+</section>
+
+<!-- 作品 -->
+<section id="works" style="background:var(--bg2);">
+  <div class="sec-head">
+    <div class="kicker">Selected works</div>
+    <h2>精选案例</h2>
+    <p>每个项目都是一个品牌的成长故事，我们用作品说话。</p>
+  </div>
+  <div class="works">
+    <div class="w-card"><div class="w-thumb w-1">🌿</div><div class="w-info"><div class="cat">品牌全案</div><h3>禾风 · 有机茶饮</h3><p>VI 体系 + 包装 + 门店视觉，帮助新锐茶饮品牌完成 0 到 1 的落地。</p></div></div>
+    <div class="w-card"><div class="w-thumb w-2">🚀</div><div class="w-info"><div class="cat">官网设计</div><h3>Nova 科技官网</h3><p>科技感官网 + 交互动效，上线 3 个月获客成本下降 27%。</p></div></div>
+    <div class="w-card"><div class="w-thumb w-3">🛍️</div><div class="w-info"><div class="cat">电商视觉</div><h3>Lume 美妆旗舰店</h3><p>详情页重构 + 主图体系，转化率提升 41%，月销翻倍。</p></div></div>
+    <div class="w-card"><div class="w-thumb w-4">📱</div><div class="w-info"><div class="cat">App UI</div><h3>Mood 运动社区</h3><p>从 0 到 1 的 App 全流程设计，上架首月 10w+ 下载。</p></div></div>
+    <div class="w-card"><div class="w-thumb w-5">🎮</div><div class="w-info"><div class="cat">IP 设计</div><h3>Pixel 游戏工作室</h3><p>IP 形象 + 全套运营素材，成为玩家心中的"官方记忆点"。</p></div></div>
+    <div class="w-card"><div class="w-thumb w-6">🏪</div><div class="w-info"><div class="cat">店铺空间</div><h3>Koffi 咖啡空间视觉</h3><p>空间导视 + 菜单视觉设计，让"打卡美学"为实体店引流。</p></div></div>
+  </div>
+</section>
+
+<!-- 流程 -->
+<section id="process">
+  <div class="sec-head">
+    <div class="kicker">How it works</div>
+    <h2>合作流程</h2>
+    <p>流程透明、节点清晰，每个阶段都会与你同步确认，绝不闷头干活。</p>
+  </div>
+  <div class="steps">
+    <div class="step"><h4>沟通需求</h4><p>免费沟通，明确目标、风格与预算，出一份需求简报。</p></div>
+    <div class="step"><h4>方案策划</h4><p>方向提案 + 风格探索，提供 2-3 套方向供你选择。</p></div>
+    <div class="step"><h4>设计执行</h4><p>主视觉产出，分节点交付，接受反馈迭代优化。</p></div>
+    <div class="step"><h4>交付落地</h4><p>全套源文件 + 使用说明 + 售后支持，确保落地无忧。</p></div>
+  </div>
+</section>
+
+<!-- 评价 -->
+<section id="reviews" style="background:var(--bg2);">
+  <div class="sec-head">
+    <div class="kicker">Testimonials</div>
+    <h2>客户怎么说</h2>
+    <p>口碑靠积累，好的合作是下一次合作的开始。</p>
+  </div>
+  <div class="testimonials">
+    <div class="t-card">
+      <div class="stars">★★★★★</div>
+      <p>"MORPH 给我们做的品牌全案审美非常在线，客户反馈"一看就是大品牌"，转化率明显提升。"</p>
+      <div class="who"><div class="avatar" style="background:#6c5ce7;">陈</div><div><b>陈总</b><span>禾风茶饮 · 创始人</span></div></div>
+    </div>
+    <div class="t-card">
+      <div class="stars">★★★★★</div>
+      <p>"沟通顺畅、交付准时、细节抠得细。官网上线后询盘量翻了一倍，值回价格。"</p>
+      <div class="who"><div class="avatar" style="background:#00d2ff;">王</div><div><b>王工</b><span>Nova 科技 · 市场总监</span></div></div>
+    </div>
+    <div class="t-card">
+      <div class="stars">★★★★★</div>
+      <p>"设计审美跟得上潮流，还会主动给运营建议。把我们当成合伙人而不是乙方，很难得。"</p>
+      <div class="who"><div class="avatar" style="background:#ff6584;">李</div><div><b>李小姐</b><span>Lume 美妆 · 品牌经理</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta" id="contact">
+  <h2>有一个项目想聊聊？</h2>
+  <p>告诉我们你的想法，24 小时内给你回复。首次咨询免费，附价值 ¥999 的风格诊断。</p>
+  <a class="btn btn-solid" href="mailto:hello@morph.design">hello@morph.design →</a>
+</div>
+
+<!-- 页脚 -->
+<footer>
+  <div class="logo">MORPH<span>.</span> Design Studio</div>
+  <div class="flinks">
+    <a href="#services">服务</a>
+    <a href="#works">作品</a>
+    <a href="#process">流程</a>
+    <a href="#contact">联系</a>
+  </div>
+  <div>© 2026 MORPH Studio · Made with ♥</div>
+</footer>
+
+</body>
+</html>
